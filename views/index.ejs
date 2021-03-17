@@ -1,1 +1,192 @@
+const discord = require("discord.js");
+const client = new discord.Client();
 
+var express = require("express");
+var app = express();
+var path = require("path");
+var bodyParser = require("body-parser")
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.set("views", path.join(__dirname, "/views"));
+app.set("view engine", "ejs")
+app.use(express.static("public"));
+
+app.get("/", function(req, res) {
+  res.render("index", {client: client})
+});
+
+app.get("/status", function(req, res) {
+  res.render("status", {client: client})
+});
+
+app.get("/invite", function(req, res) {
+  res.render("invite", {client: client})
+});
+
+app.get("/vote", function(req, res) {
+  res.render("vote", {client: client})
+});
+
+app.get("/suporte", function(req, res) {
+  res.render("suporte", {client: client})
+});
+
+app.get("/obrigado-por-me-adicionar", function(req, res) {
+  res.render("obrigado-por-me-adicionar", {client: client})
+});
+
+var listeners = app.listen(process.env.PORT, function() {
+  console.log("Your app is listening on port " + listeners.address().port)
+});
+
+
+
+
+
+client.on("ready", () => {
+  console.log("I am Looking Forward to this :D")
+})
+
+client.login("NzkzMTU5ODIxNzU4NjkzMzg2.X-oNpQ.Z2GeH_nEK0TLT-_jlrs0DE7mXXA")
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<style>
+body {
+	background-image: url("https://i.pinimg.com/originals/0d/e1/d5/0de1d5725fcb00e776eedde5062aec8d.jpg");
+  }
+.avatar {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin: 8%;
+}
+.margin {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin: 8%;
+}
+.avatarIMG {
+  border-radius: 15px;
+  height: 30px;
+  width: 30px;
+  margin: 0 5px 0 0;
+}
+.img {
+  border-radius: 50%;
+}
+    .grow {
+        background-color: pink; 
+    border: none;
+    color: black;
+        font-size: 300%;
+border-radius: 20px;
+    }
+.grow:hover {
+  transition: 0.5s;
+  transform: scale(1.2);
+}
+  .breadcrumb-item{
+    border: none;
+border-radius: 20px;
+}
+.breadcrumb-item:hover {
+  transition: 0.5s;
+  transform: scale(1.2);
+}
+   
+</style>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="shortcut icon" href="<%= client.user.displayAvatarURL({dynamic: true}) %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">    
+    <title><%= client.user.username %></title>
+  </head>
+  <body>
+    <!-- Image and text -->
+  <nav class="navbar navbar-light bg-dark">
+    <a class="navbar-brand" href="#">
+      <img class="avatarIMG" src="<%= client.user.displayAvatarURL({dynamic: true}) %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+      <b style="color:pink;"><%= client.user.username %></b>
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#" style="color:pink;"><b>Me Adicione</b></a></li>
+    <li class="breadcrumb-item"><a href="#" style="color:pink;"><b>Suporte</b></a></li>
+    <li class="breadcrumb-item"><a href="#" style="color:pink;"><b>Vote</b></a></li>
+    <li class="breadcrumb-item"><a href="status" style="color:pink;"><b>Status</b></a></li>
+    <li class="breadcrumb-item active" aria-current="page">Sobre</li>
+  </ol>
+    </a>
+    </nav>
+  <div class="avatar">
+  <center>
+  <img class="img" src="<%= client.user.displayAvatarURL({dynamic: true}) %>"></center></div>
+  <div class="margin">
+<center>
+  <p style="color:white;"><img class="avatarIMG" src="<%= client.user.displayAvatarURL({dynamic: true}) %>" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy"> <%= client.user.username %>:
+<b style="color:pink;">
+  Olá, eu sou a Yukihira! Fui criada com o intuito ajudar o seu servidor! Sou uma bot focada em economia e moderação. Atualmente tenho 6 categorias, são elas: <strong>Utilidades, Economia, Moderação, Música</strong>
+<p>Espero que goste do meus comandos! Qual quer bug report ao meu servidor de suporte.</p>
+</b>
+</center>
+  <center>
+    <a href="https://discord.com/api/oauth2/authorize?client_id=793159821758693386&permissions=8&redirect_uri=https%3A%2F%2Fyukihirabot.glitch.me%2Fobrigado-por-me-adicionar&scope=bot"><button type="button"  class="btn btn-outline-pink grow"><b>Adicionar</b></button></a>
+  </center></div>
+
+<footer style="color:black;">
+        <div class="footer">
+            <div class="row">
+                <div class="col-12 col-md-6 pb-5 pb-md-0">
+                    <h4 style="color:pink;"> ! Yukihira 女王</h4>
+                    <h5 class="lead" style="color:pink;">Copyright © 2021 <%= client.user.username%></h5>
+                </div>
+                <div class="col-12 col-md-3 col-sm-6">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a href="https://discord.gg/QagdnBnBFe" class="nav-link text-light p-1"><i class="fab fa-discord"></i> <b>Discord</b></a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#" class="nav-link text-light p-1"><i class="fab fa-github"></i> <b>GitHub</b></a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="/cdn-cgi/l/email-protection#2c4f4342584d4f586c5449424342024e4358" class="nav-link text-light p-1"></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-3 col-sm-6">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                          <a href="#" class="nav-link text-light p-1"><b>Suporte</b></a>
+                        </li>
+                        <li class="nav-item">
+                          <a href="#" class="nav-link text-light p-1"><b>Sobre</b></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <span data-ccpa-link="1" class="bg-light"></span>
+        </div>
+</footer> 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js"></script>
+  </body>
+</html>
