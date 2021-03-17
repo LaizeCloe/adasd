@@ -8,7 +8,7 @@ var path = require("path");
 var bodyParser = require("body-parser")
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.set("pages", path.join(__dirname, "/pages"));
+app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "ejs")
 app.use(express.static("public"));
 
@@ -34,4 +34,4 @@ client.on("ready", () => {
   console.log("Website funcionando :D")
 })
 
-client.login("")
+client.login("token do seu bot")
